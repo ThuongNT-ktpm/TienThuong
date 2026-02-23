@@ -3,754 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thương - Dịch Vụ Web & Source Code</title>
+    <title>Thương - Dịch Vụ Web Lãng Mạn & Tỏ Tình</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <style>
-      :root {
-        --primary-color: #ff4757;
-        --blue-btn: #0084ff;
-        --bg-color: #f4f6f9;
-        --text-dark: #2d3436;
-        --text-light: #636e72;
-        --card-radius: 16px;
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family:
-          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-          Arial, sans-serif;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        background-color: var(--bg-color);
-        color: var(--text-dark);
-        padding-bottom: 90px;
-      }
-
-      /* --- Header --- */
-      header {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        padding: 15px 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        transition: 0.3s;
-      }
-      .logo {
-        font-weight: 800;
-        font-size: 1.5rem;
-        color: var(--text-dark);
-        text-decoration: none;
-      }
-      .logo span {
-        color: var(--primary-color);
-      }
-      .desktop-nav {
-        display: none;
-      }
-
-      /* --- Banner Hero --- */
-      .hero {
-        position: relative;
-        color: white;
-        text-align: center;
-        padding: 70px 20px;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 380px;
-        background-color: #2d3436;
-      }
-      .slider-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-      }
-      .slide {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: center;
-        opacity: 0;
-        transition: opacity 0.5s ease-in-out;
-        object-fit: cover;
-      }
-      .slide.active {
-        opacity: 1;
-      }
-      .slide::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-      }
-
-      .hero-content {
-        position: relative;
-        z-index: 2;
-        padding: 0 20px;
-        max-width: 800px;
-        margin: 0 auto;
-      }
-      .hero h1 {
-        font-size: 2.2rem;
-        font-weight: 800;
-        line-height: 1.3;
-        color: #ffffff;
-        text-shadow:
-          4px 4px 15px rgba(0, 0, 0, 1),
-          0 0 20px rgba(0, 0, 0, 0.5);
-        margin-bottom: 15px;
-      }
-      .hero p {
-        font-size: 1.05rem;
-        color: #ffffff;
-        text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
-        line-height: 1.6;
-        margin-bottom: 25px;
-      }
-
-      .btn-main {
-        background: var(--primary-color);
-        color: white;
-        padding: 14px 32px;
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 1rem;
-        display: inline-block;
-        box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
-        border: none;
-        cursor: pointer;
-        transition: 0.3s;
-      }
-      .btn-main:active {
-        transform: scale(0.95);
-      }
-
-      .slider-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(5px);
-        color: white;
-        border: none;
-        font-size: 1.2rem;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        cursor: pointer;
-        z-index: 3;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: 0.3s;
-      }
-      .slider-btn:hover {
-        background-color: var(--primary-color);
-      }
-      .prev-btn {
-        left: 10px;
-      }
-      .next-btn {
-        right: 10px;
-      }
-
-      .slider-dots {
-        position: absolute;
-        bottom: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 8px;
-        z-index: 3;
-      }
-      .dot {
-        width: 8px;
-        height: 8px;
-        background-color: rgba(255, 255, 255, 0.4);
-        border-radius: 50%;
-        transition: 0.3s;
-        cursor: pointer;
-      }
-      .dot.active {
-        background-color: white;
-        transform: scale(1.3);
-      }
-
-      /* --- Tiêu đề & Filter --- */
-      .section-header {
-        text-align: left;
-        padding: 35px 20px 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-      }
-      .section-title {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: #2d3436;
-        letter-spacing: -0.5px;
-      }
-
-      .category-filter {
-        display: flex;
-        gap: 12px;
-        overflow-x: auto;
-        padding: 0 20px 20px;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-      .category-filter::-webkit-scrollbar {
-        display: none;
-      }
-      .filter-btn {
-        scroll-snap-align: start;
-        flex-shrink: 0;
-        background: white;
-        border: 1px solid #dfe6e9;
-        border-radius: 20px;
-        padding: 8px 16px;
-        font-size: 0.9rem;
-        color: var(--text-light);
-        font-weight: 600;
-        transition: 0.2s;
-        cursor: pointer;
-      }
-      .filter-btn.active {
-        color: var(--blue-btn);
-        border-color: var(--blue-btn);
-        background-color: #e3f2fd;
-      }
-
-      /* --- Thẻ Sản Phẩm --- */
-      .products {
-        padding: 0 20px;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 20px;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-      .product-card {
-        background: white;
-        border-radius: var(--card-radius);
-        overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-        display: flex;
-        flex-direction: column;
-        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      }
-      .product-img {
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
-        display: block;
-        background: #eee;
-      }
-      .product-info {
-        padding: 16px;
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-      }
-      .product-title {
-        font-size: 1.05rem;
-        font-weight: 700;
-        color: #2d3436;
-        margin-bottom: 8px;
-        line-height: 1.4;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        transition: 0.3s;
-      }
-      .product-card:hover .product-title {
-        color: var(--blue-btn);
-      }
-      .product-meta {
-        font-size: 0.85rem;
-        color: var(--text-light);
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
-
-      .price-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        margin-bottom: 16px;
-        margin-top: auto;
-        border-top: 1px dashed #dfe6e9;
-        padding-top: 12px;
-      }
-      .old-price {
-        font-size: 0.8rem;
-        color: #b2bec3;
-        text-decoration: line-through;
-        display: block;
-      }
-      .new-price {
-        color: var(--primary-color);
-        font-size: 1.3rem;
-        font-weight: 800;
-      }
-      .discount-badge {
-        background: #ffeaa7;
-        color: #d35400;
-        font-size: 0.7rem;
-        padding: 3px 6px;
-        border-radius: 6px;
-        font-weight: bold;
-      }
-
-      /* --- Nút Mua/Xem --- */
-      .product-actions {
-        display: flex;
-        gap: 10px;
-      }
-      .btn-action {
-        flex: 1;
-        padding: 12px 0;
-        border-radius: 10px;
-        font-size: 0.95rem;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-        border: none;
-        cursor: pointer;
-        transition: 0.3s;
-      }
-      .btn-primary {
-        background: var(--blue-btn);
-        color: white;
-        box-shadow: 0 4px 10px rgba(0, 132, 255, 0.2);
-      }
-      .btn-primary:hover {
-        background: #006bce;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 15px rgba(0, 132, 255, 0.3);
-      }
-      .btn-primary:active {
-        transform: scale(0.96);
-      }
-      .btn-outline {
-        background: #f1f2f6;
-        color: #2d3436;
-      }
-      .btn-outline:hover {
-        background: #e3f2fd;
-        color: var(--blue-btn);
-        transform: translateY(-2px);
-      }
-      .btn-outline:active {
-        background: #dfe4ea;
-      }
-      .btn-buy-full {
-        width: 100%;
-        padding: 14px 0;
-        border-radius: 10px;
-        font-size: 1rem;
-        font-weight: 700;
-        background: #f0f7ff;
-        color: var(--blue-btn);
-        border: 1px solid #cce4ff;
-        transition: 0.3s;
-        cursor: pointer;
-      }
-      .btn-buy-full:hover {
-        background: var(--blue-btn);
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 15px rgba(0, 132, 255, 0.2);
-      }
-
-      /* ======================================================= */
-      /* PHÂN TRANG (PAGINATION) CHỈ HIỆN TRÊN PC                */
-      /* ======================================================= */
-      .pagination-container {
-        display: none;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 30px;
-        width: 100%;
-      }
-      .page-btn {
-        background: white;
-        border: 1px solid #dfe6e9;
-        padding: 8px 16px;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: 0.3s;
-        font-weight: bold;
-        font-size: 1rem;
-        color: var(--text-dark);
-      }
-      .page-btn.active {
-        background: var(--blue-btn);
-        color: white;
-        border-color: var(--blue-btn);
-      }
-      .page-btn:hover:not(.active) {
-        background: #f0f7ff;
-        color: var(--blue-btn);
-        border-color: var(--blue-btn);
-      }
-
-      /* --- Footer --- */
-      .site-footer {
-        background-color: #2d3436;
-        color: #b2bec3;
-        padding: 40px 20px 25px;
-        font-size: 0.9rem;
-        margin-top: 40px;
-      }
-      .footer-col h4 {
-        color: #ffffff;
-        font-size: 1.1rem;
-        margin-bottom: 15px;
-      }
-      .footer-col ul {
-        list-style: none;
-        margin-bottom: 25px;
-      }
-      .footer-col ul li {
-        margin-bottom: 10px;
-      }
-      .footer-col ul li a {
-        color: #74b9ff;
-        text-decoration: none;
-        transition: 0.3s;
-        cursor: pointer;
-      }
-      .footer-col ul li a:hover {
-        color: white;
-        padding-left: 5px;
-      }
-      .footer-bottom {
-        border-top: 1px solid #636e72;
-        padding-top: 20px;
-        text-align: center;
-        font-size: 0.8rem;
-      }
-
-      /* --- Bottom Nav --- */
-      .bottom-nav {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 15px 15px;
-        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
-        z-index: 1000;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-      }
-      .nav-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: var(--text-light);
-        text-decoration: none;
-        font-size: 0.7rem;
-        width: 25%;
-        font-weight: 600;
-      }
-      .nav-item.active {
-        color: var(--blue-btn);
-      }
-      .nav-item i {
-        font-size: 1.4rem;
-        margin-bottom: 4px;
-        transition: 0.2s;
-      }
-      .nav-item.active i {
-        transform: translateY(-3px);
-      }
-
-      .messenger-floating-btn {
-        position: fixed;
-        right: 20px;
-        bottom: 100px;
-        width: 56px;
-        height: 56px;
-        background-color: var(--blue-btn);
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 2rem;
-        box-shadow: 0 4px 15px rgba(0, 132, 255, 0.4);
-        z-index: 999;
-        animation: pulse 2s infinite;
-        transition: 0.3s;
-      }
-      .messenger-floating-btn:hover {
-        transform: scale(1.1);
-      }
-      @keyframes pulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.5);
-        }
-        70% {
-          box-shadow: 0 0 0 15px rgba(0, 132, 255, 0);
-        }
-        100% {
-          box-shadow: 0 0 0 0 rgba(0, 132, 255, 0);
-        }
-      }
-
-      /* ======================================================= */
-      /* MODAL BANNER CHÍNH SÁCH                                 */
-      /* ======================================================= */
-      .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        z-index: 10000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        opacity: 0;
-        visibility: hidden;
-        transition: 0.3s;
-      }
-      .modal-overlay.show {
-        opacity: 1;
-        visibility: visible;
-      }
-      .modal-content {
-        background: white;
-        width: 90%;
-        max-width: 500px;
-        padding: 30px;
-        border-radius: 15px;
-        position: relative;
-        transform: translateY(-20px);
-        transition: 0.3s;
-        color: var(--text-dark);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      }
-      .modal-overlay.show .modal-content {
-        transform: translateY(0);
-      }
-      .close-modal {
-        position: absolute;
-        top: 15px;
-        right: 20px;
-        font-size: 1.8rem;
-        cursor: pointer;
-        color: #a4b0be;
-        transition: 0.3s;
-      }
-      .close-modal:hover {
-        color: var(--primary-color);
-      }
-      .modal-title {
-        font-size: 1.4rem;
-        font-weight: 800;
-        margin-bottom: 15px;
-        color: var(--blue-btn);
-        border-bottom: 2px solid #f1f2f6;
-        padding-bottom: 10px;
-      }
-      .modal-body {
-        font-size: 0.95rem;
-        line-height: 1.6;
-        color: #57606f;
-      }
-
-      /* ======================================================= */
-      /* PC/LAPTOP                                               */
-      /* ======================================================= */
-      @media (min-width: 768px) {
-        body {
-          padding-bottom: 0;
-        }
-        .container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding-left: 0;
-          padding-right: 0;
-        }
-        header {
-          justify-content: space-between;
-          padding: 20px 5%;
-        }
-        .logo {
-          font-size: 1.8rem;
-        }
-        .desktop-nav {
-          display: flex;
-          gap: 40px;
-        }
-
-        /* Đã sửa lỗi Header cho bạn ở đây: */
-        .desktop-nav a {
-          text-decoration: none;
-          color: var(--text-dark);
-          font-weight: 600;
-          font-size: 1.05rem;
-          position: relative;
-          padding-bottom: 5px;
-          transition: 0.3s;
-        }
-        .desktop-nav a:hover,
-        .desktop-nav a.active {
-          color: var(--blue-btn);
-        }
-        .desktop-nav a::after {
-          content: "";
-          position: absolute;
-          left: 0;
-          bottom: 0;
-          width: 0;
-          height: 3px;
-          background: var(--blue-btn);
-          transition: width 0.3s ease;
-          border-radius: 2px;
-        }
-        .desktop-nav a:hover::after,
-        .desktop-nav a.active::after {
-          width: 100%;
-        }
-        /* --------------------------------- */
-
-        .bottom-nav {
-          display: none;
-        }
-
-        .hero {
-          padding: 160px 20px;
-          min-height: 550px;
-          border-radius: 0 0 40px 40px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        .hero h1 {
-          font-size: 3.5rem;
-          letter-spacing: -1px;
-        }
-        .hero p {
-          font-size: 1.2rem;
-          max-width: 700px;
-        }
-        .btn-main {
-          font-size: 1.1rem;
-          padding: 16px 40px;
-        }
-        .slider-btn {
-          width: 55px;
-          height: 55px;
-          font-size: 1.6rem;
-        }
-        .prev-btn {
-          left: 40px;
-        }
-        .next-btn {
-          right: 40px;
-        }
-        .slider-dots {
-          bottom: 30px;
-        }
-
-        .products {
-          grid-template-columns: repeat(3, 1fr);
-          gap: 30px;
-        }
-        .section-header {
-          padding-top: 60px;
-          padding-bottom: 25px;
-        }
-        .section-title {
-          font-size: 2.2rem;
-        }
-        .product-card {
-          border-radius: 20px;
-        }
-        .product-card:hover {
-          transform: translateY(-12px);
-          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-        }
-        .product-img {
-          height: 220px;
-        }
-        .product-card:hover .product-img {
-          transform: scale(1.02);
-        }
-        .category-filter {
-          justify-content: center;
-          gap: 20px;
-          padding-bottom: 30px;
-        }
-        .filter-btn {
-          padding: 10px 24px;
-          font-size: 1.05rem;
-        }
-
-        .pagination-container.show {
-          display: flex;
-        } /* Chỉ hiện Phân trang trên PC khi có class show */
-
-        .messenger-floating-btn {
-          bottom: 40px;
-          right: 40px;
-          width: 65px;
-          height: 65px;
-          font-size: 2.5rem;
-        }
-        .site-footer {
-          margin-top: 80px;
-          padding: 60px 20px 30px;
-        }
-        .site-footer .footer-container {
-          display: grid;
-          grid-template-columns: 2fr 1fr 1fr 1fr;
-          gap: 40px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="CSS/style.css" />
   </head>
   <body>
     <header id="home">
-      <a href="#home" class="logo">Thương<span>.dev</span></a>
+      <a href="#home" class="logo">Cậu SE <span>Trẻ</span></a>
       <nav class="desktop-nav">
         <a href="#home" class="active">Trang chủ</a>
         <a href="#love-web">Web tỏ tình</a>
@@ -777,8 +39,10 @@
         <i class="fas fa-chevron-right"></i>
       </button>
       <div class="slider-dots">
-        <span class="dot active"></span><span class="dot"></span
-        ><span class="dot"></span><span class="dot"></span>
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
       </div>
       <div class="hero-content">
         <h1>Gửi Trao Cảm Xúc<br />& Tri Thức</h1>
@@ -800,7 +64,7 @@
     </section>
 
     <div class="section-header container" id="love-web">
-      <h2 class="section-title">Web Tỏ Tình & Kỷ Niệm 💖</h2>
+      <h2 class="section-title">Web Tỏ Tình & Kỷ Niệm</h2>
     </div>
 
     <div class="category-filter container">
@@ -808,17 +72,14 @@
       <button class="filter-btn" data-filter="valentine">💝 Valentine</button>
       <button class="filter-btn" data-filter="8-3">🌷 Quà 8/3</button>
       <button class="filter-btn" data-filter="birthday">🎂 Sinh nhật</button>
+      <button class="filter-btn" data-filter="other">✨ Khác</button>
     </div>
 
     <section class="products container" id="product-list">
       <div class="product-card item" data-category="valentine">
-        <img
-          class="product-img"
-          src="image/web/quabimat.png"
-          alt="Tên sản phẩm"
-        />
+        <img class="product-img" src="image/web/quabimat.png" alt="Love Gift" />
         <div class="product-info">
-          <div class="product-title">Love Gift - Quà bí mật</div>
+          <div class="product-title">Love Gift - Quà Bí Mật Chữ Rơi</div>
           <div class="product-meta">
             <i class="fas fa-fire" style="color: #ff4757"></i> Đã bán: 30
           </div>
@@ -834,7 +95,7 @@
               class="btn-action btn-primary"
               onclick="
                 buyViaMessenger(
-                  'Chào Thương, mình muốn mua Web Tỏ Tình Valentine với giá 25.000đ.',
+                  'Chào Thương, mình muốn mua Web Love Gift (Valentine) giá 25K.',
                 )
               "
             >
@@ -855,14 +116,294 @@
         </div>
       </div>
 
-      <div class="product-card item" data-category="birthday">
+      <div class="product-card item" data-category="valentine">
         <img
           class="product-img"
-          src="image/web/birthday.png"
-          alt="Tên sản phẩm"
+          src="image/web/vutru.png"
+          alt="Vũ Trụ của anh"
         />
         <div class="product-info">
-          <div class="product-title">Web Chúc Mừng Sinh Nhật Mưa 3D</div>
+          <div class="product-title">Vũ trụ tình yêu</div>
+          <div class="product-meta">
+            <i class="fas fa-heart" style="color: #ff4757"></i> Đã bán: 2
+          </div>
+          <div class="price-container">
+            <div>
+              <span class="old-price">60.000đ</span
+              ><span class="discount-badge">-50%</span>
+            </div>
+            <div class="new-price">30.000đ</div>
+          </div>
+          <div class="product-actions">
+            <button
+              class="btn-action btn-primary"
+              onclick="
+                buyViaMessenger(
+                  'Chào Thương, mình muốn mua Web Vũ trụ tình yêu giá 30K.',
+                )
+              "
+            >
+              <i class="fab fa-facebook-messenger"></i> Mua ngay
+            </button>
+            <button
+              class="btn-action btn-outline"
+              onclick="
+                window.open('https://thuongnt-ktpm.github.io/', '_blank')
+              "
+            >
+              <i class="fas fa-eye"></i> Xem demo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card item" data-category="valentine">
+        <img
+          class="product-img"
+          src="image/web/trsitimdap.png"
+          alt="Trái Tim Đập"
+        />
+        <div class="product-info">
+          <div class="product-title">Web Trái Tim Đập Lãng Mạn</div>
+          <div class="product-meta">
+            <i class="fas fa-heartbeat" style="color: #ff4757"></i> Đã bán: 12
+          </div>
+          <div class="price-container">
+            <div>
+              <span class="old-price">40.000đ</span
+              ><span class="discount-badge">-25%</span>
+            </div>
+            <div class="new-price">30.000đ</div>
+          </div>
+          <div class="product-actions">
+            <button
+              class="btn-action btn-primary"
+              onclick="
+                buyViaMessenger(
+                  'Chào Thương, mình muốn mua Web Trái Tim Đập Lãng Mạn giá 30K.',
+                )
+              "
+            >
+              <i class="fab fa-facebook-messenger"></i> Mua ngay
+            </button>
+            <button
+              class="btn-action btn-outline"
+              onclick="
+                window.open(
+                  'https://thuongnt-ktpm.github.io/traitimdap/',
+                  '_blank',
+                )
+              "
+            >
+              <i class="fas fa-eye"></i> Xem demo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card item" data-category="valentine">
+        <img class="product-img" src="image/web/bau-troi.png" alt="Bầu Trời" />
+        <div class="product-info">
+          <div class="product-title">Web Bầu Trời Đầy Sao - Lời Tỏ Tình</div>
+          <div class="product-meta">
+            <i class="fas fa-star" style="color: #f1c40f"></i> Đã bán: 22
+          </div>
+          <div class="price-container">
+            <div>
+              <span class="old-price">80.000đ</span
+              ><span class="discount-badge">-37%</span>
+            </div>
+            <div class="new-price">50.000đ</div>
+          </div>
+          <div class="product-actions">
+            <button
+              class="btn-action btn-primary"
+              onclick="
+                buyViaMessenger(
+                  'Chào Thương, mình muốn mua Web Bầu Trời Đầy Sao giá 50K.',
+                )
+              "
+            >
+              <i class="fab fa-facebook-messenger"></i> Mua ngay
+            </button>
+            <button
+              class="btn-action btn-outline"
+              onclick="window.open('#', '_blank')"
+            >
+              <i class="fas fa-eye"></i> Xem demo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card item" data-category="8-3">
+        <img class="product-img" src="image/web/phunu.png" alt="8/3" />
+        <div class="product-info">
+          <div class="product-title">
+            Trang Tôn Vinh Phụ Nữ 8/3 - Lời Chúc Ý Nghĩa
+          </div>
+          <div class="product-meta">
+            <i class="fas fa-shopping-cart" style="color: #747d8c"></i> Đã bán:
+            4
+          </div>
+          <div class="price-container">
+            <div>
+              <span class="old-price">69.999đ</span
+              ><span class="discount-badge">-64%</span>
+            </div>
+            <div class="new-price">25.000đ</div>
+          </div>
+          <div class="product-actions">
+            <button
+              class="btn-action btn-primary"
+              onclick="
+                buyViaMessenger(
+                  'Chào Thương, mình muốn mua Trang Phụ Nữ 8/3 giá 25K.',
+                )
+              "
+            >
+              <i class="fab fa-facebook-messenger"></i> Mua ngay
+            </button>
+            <button
+              class="btn-action btn-outline"
+              onclick="
+                window.open('https://thuongnt-ktpm.github.io/2010', '_blank')
+              "
+            >
+              <i class="fas fa-eye"></i> Xem demo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card item" data-category="8-3">
+        <img
+          class="product-img"
+          src="image/web/hoa-hong-3d.png"
+          alt="Hoa Hồng 3D"
+        />
+        <div class="product-info">
+          <div class="product-title">Web Tặng Hoa Hồng 3D CSS Khắc Tên</div>
+          <div class="product-meta">
+            <i class="fas fa-seedling" style="color: #2ed573"></i> Đã bán: 12
+          </div>
+          <div class="price-container">
+            <div>
+              <span class="old-price">50.000đ</span
+              ><span class="discount-badge">-30%</span>
+            </div>
+            <div class="new-price">35.000đ</div>
+          </div>
+          <div class="product-actions">
+            <button
+              class="btn-action btn-primary"
+              onclick="
+                buyViaMessenger(
+                  'Chào Thương, mình muốn mua Web Hoa Hồng 3D giá 35K.',
+                )
+              "
+            >
+              <i class="fab fa-facebook-messenger"></i> Mua ngay
+            </button>
+            <button
+              class="btn-action btn-outline"
+              onclick="window.open('#', '_blank')"
+            >
+              <i class="fas fa-eye"></i> Xem demo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card item" data-category="8-3">
+        <img
+          class="product-img"
+          src="image/web/loi-chuc-me.png"
+          alt="Lời chúc Mẹ"
+        />
+        <div class="product-info">
+          <div class="product-title">
+            Web Album Ảnh - Gửi Lời Yêu Thương Đến Mẹ
+          </div>
+          <div class="product-meta">
+            <i class="fas fa-images" style="color: #ffa502"></i> Đã bán: 28
+          </div>
+          <div class="price-container">
+            <div>
+              <span class="old-price">90.000đ</span
+              ><span class="discount-badge">-44%</span>
+            </div>
+            <div class="new-price">50.000đ</div>
+          </div>
+          <div class="product-actions">
+            <button
+              class="btn-action btn-primary"
+              onclick="
+                buyViaMessenger(
+                  'Chào Thương, mình muốn mua Web Album Ảnh 8/3 giá 50K.',
+                )
+              "
+            >
+              <i class="fab fa-facebook-messenger"></i> Mua ngay
+            </button>
+            <button
+              class="btn-action btn-outline"
+              onclick="window.open('#', '_blank')"
+            >
+              <i class="fas fa-eye"></i> Xem demo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card item" data-category="8-3">
+        <img
+          class="product-img"
+          src="image/web/thiep-dien-tu.png"
+          alt="Thiệp Điện Tử"
+        />
+        <div class="product-info">
+          <div class="product-title">
+            Thiệp Điện Tử Mở Rời Kèm Lời Nhắn Tự Chữ
+          </div>
+          <div class="product-meta">
+            <i class="fas fa-envelope-open-text" style="color: #1e90ff"></i> Đã
+            bán: 9
+          </div>
+          <div class="price-container">
+            <div>
+              <span class="old-price">40.000đ</span
+              ><span class="discount-badge">-25%</span>
+            </div>
+            <div class="new-price">30.000đ</div>
+          </div>
+          <div class="product-actions">
+            <button
+              class="btn-action btn-primary"
+              onclick="
+                buyViaMessenger(
+                  'Chào Thương, mình muốn mua Thiệp Điện Tử 8/3 giá 30K.',
+                )
+              "
+            >
+              <i class="fab fa-facebook-messenger"></i> Mua ngay
+            </button>
+            <button
+              class="btn-action btn-outline"
+              onclick="window.open('#', '_blank')"
+            >
+              <i class="fas fa-eye"></i> Xem demo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card item" data-category="birthday">
+        <img class="product-img" src="image/web/birthday.png" alt="Sinh Nhật" />
+        <div class="product-info">
+          <div class="product-title">
+            Web Chúc Mừng Sinh Nhật Mưa 3D Lấp Lánh
+          </div>
           <div class="product-meta">
             <i class="fas fa-star" style="color: #f1c40f"></i> Đã bán: 23
           </div>
@@ -878,7 +419,7 @@
               class="btn-action btn-primary"
               onclick="
                 buyViaMessenger(
-                  'Chào Thương, mình muốn mua Web Sinh Nhật với giá 29.000đ.',
+                  'Chào Thương, mình muốn mua Web Sinh Nhật Mưa 3D giá 29K.',
                 )
               "
             >
@@ -896,29 +437,29 @@
         </div>
       </div>
 
-      <div class="product-card item" data-category="8-3">
-        <img class="product-img" src="image/web/phunu.png" alt="Tên sản phẩm" />
+      <div class="product-card item" data-category="birthday">
+        <img class="product-img" src="image/web/banh-kem.png" alt="Bánh Kem" />
         <div class="product-info">
           <div class="product-title">
-            Trang Tôn Vinh Phụ Nữ 8/3 - Lời Chúc Ý Nghĩa
+            Web Thổi Nến Bánh Kem Sinh Nhật Ảo Bằng Mic
           </div>
           <div class="product-meta">
-            <i class="fas fa-shopping-cart" style="color: #747d8c"></i> Đã bán:
-            4
+            <i class="fas fa-birthday-cake" style="color: #ff9ff3"></i> Đã bán:
+            50
           </div>
           <div class="price-container">
             <div>
-              <span class="old-price">69.999đ</span
-              ><span class="discount-badge">-63.8%</span>
+              <span class="old-price">100.000đ</span
+              ><span class="discount-badge">-50%</span>
             </div>
-            <div class="new-price">25.000đ</div>
+            <div class="new-price">50.000đ</div>
           </div>
           <div class="product-actions">
             <button
               class="btn-action btn-primary"
               onclick="
                 buyViaMessenger(
-                  'Chào Thương, mình muốn mua Trang Phụ Nữ 8/3 với giá 25.000đ.',
+                  'Chào Thương, mình muốn mua Web Thổi Nến Bánh Kem giá 50K.',
                 )
               "
             >
@@ -926,9 +467,233 @@
             </button>
             <button
               class="btn-action btn-outline"
+              onclick="window.open('#', '_blank')"
+            >
+              <i class="fas fa-eye"></i> Xem demo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card item" data-category="birthday">
+        <img class="product-img" src="image/web/phao-hoa.png" alt="Pháo Hoa" />
+        <div class="product-info">
+          <div class="product-title">
+            Web Sinh Nhật Bắn Pháo Hoa Màn Hình Full
+          </div>
+          <div class="product-meta">
+            <i class="fas fa-magic" style="color: #0fb9b1"></i> Đã bán: 15
+          </div>
+          <div class="price-container">
+            <div>
+              <span class="old-price">60.000đ</span
+              ><span class="discount-badge">-33%</span>
+            </div>
+            <div class="new-price">40.000đ</div>
+          </div>
+          <div class="product-actions">
+            <button
+              class="btn-action btn-primary"
               onclick="
-                window.open('https://thuongnt-ktpm.github.io/2010', '_blank')
+                buyViaMessenger(
+                  'Chào Thương, mình muốn mua Web Pháo Hoa Sinh Nhật giá 40K.',
+                )
               "
+            >
+              <i class="fab fa-facebook-messenger"></i> Mua ngay
+            </button>
+            <button
+              class="btn-action btn-outline"
+              onclick="window.open('#', '_blank')"
+            >
+              <i class="fas fa-eye"></i> Xem demo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card item" data-category="birthday">
+        <img
+          class="product-img"
+          src="image/web/hop-qua-sn.png"
+          alt="Hộp Quà SN"
+        />
+        <div class="product-info">
+          <div class="product-title">
+            Web Mở Hộp Quà Sinh Nhật Chứa Lời Nhắn Video
+          </div>
+          <div class="product-meta">
+            <i class="fas fa-box-open" style="color: #fa8231"></i> Đã bán: 32
+          </div>
+          <div class="price-container">
+            <div>
+              <span class="old-price">90.000đ</span
+              ><span class="discount-badge">-33%</span>
+            </div>
+            <div class="new-price">60.000đ</div>
+          </div>
+          <div class="product-actions">
+            <button
+              class="btn-action btn-primary"
+              onclick="
+                buyViaMessenger(
+                  'Chào Thương, mình muốn mua Web Hộp Quà Video giá 60K.',
+                )
+              "
+            >
+              <i class="fab fa-facebook-messenger"></i> Mua ngay
+            </button>
+            <button
+              class="btn-action btn-outline"
+              onclick="window.open('#', '_blank')"
+            >
+              <i class="fas fa-eye"></i> Xem demo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card item" data-category="other">
+        <img
+          class="product-img"
+          src="image/web/demngayyeu.png"
+          alt="Đếm Ngày"
+        />
+        <div class="product-info">
+          <div class="product-title">
+            Web Đếm Ngày Yêu Nhau - Giao Diện Cute Mèo
+          </div>
+          <div class="product-meta">
+            <i class="fas fa-cat" style="color: #ff6b81"></i> Đã bán: 65
+          </div>
+          <div class="price-container">
+            <div>
+              <span class="old-price">60.000đ</span
+              ><span class="discount-badge">-41%</span>
+            </div>
+            <div class="new-price">35.000đ</div>
+          </div>
+          <div class="product-actions">
+            <button
+              class="btn-action btn-primary"
+              onclick="
+                buyViaMessenger(
+                  'Chào Thương, mình muốn mua Web Đếm Ngày Yêu giá 35K.',
+                )
+              "
+            >
+              <i class="fab fa-facebook-messenger"></i> Mua ngay
+            </button>
+            <button
+              class="btn-action btn-outline"
+              onclick="window.open('#', '_blank')"
+            >
+              <i class="fas fa-eye"></i> Xem demo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card item" data-category="other">
+        <img class="product-img" src="image/web/xin-loi.png" alt="Xin lỗi" />
+        <div class="product-info">
+          <div class="product-title">
+            Web Xin Lỗi Người Yêu Dễ Thương Kèm Nút Chạy
+          </div>
+          <div class="product-meta">
+            <i class="fas fa-sad-tear" style="color: #a4b0be"></i> Đã bán: 40
+          </div>
+          <div class="price-container">
+            <div>
+              <span class="old-price">50.000đ</span
+              ><span class="discount-badge">-40%</span>
+            </div>
+            <div class="new-price">30.000đ</div>
+          </div>
+          <div class="product-actions">
+            <button
+              class="btn-action btn-primary"
+              onclick="
+                buyViaMessenger(
+                  'Chào Thương, mình muốn mua Web Xin Lỗi Nút Chạy giá 30K.',
+                )
+              "
+            >
+              <i class="fab fa-facebook-messenger"></i> Mua ngay
+            </button>
+            <button
+              class="btn-action btn-outline"
+              onclick="window.open('#', '_blank')"
+            >
+              <i class="fas fa-eye"></i> Xem demo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card item" data-category="other">
+        <img class="product-img" src="image/web/cau-hon.png" alt="Cầu Hôn" />
+        <div class="product-info">
+          <div class="product-title">Trang Web Cầu Hôn Bí Mật Bằng Mã QR</div>
+          <div class="product-meta">
+            <i class="fas fa-ring" style="color: #fbc531"></i> Đã bán: 5
+          </div>
+          <div class="price-container">
+            <div>
+              <span class="old-price">200.000đ</span
+              ><span class="discount-badge">-50%</span>
+            </div>
+            <div class="new-price">100.000đ</div>
+          </div>
+          <div class="product-actions">
+            <button
+              class="btn-action btn-primary"
+              onclick="
+                buyViaMessenger(
+                  'Chào Thương, mình muốn mua Web Cầu Hôn QR giá 100K.',
+                )
+              "
+            >
+              <i class="fab fa-facebook-messenger"></i> Mua ngay
+            </button>
+            <button
+              class="btn-action btn-outline"
+              onclick="window.open('#', '_blank')"
+            >
+              <i class="fas fa-eye"></i> Xem demo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card item" data-category="other">
+        <img class="product-img" src="image/web/timeline.png" alt="Timeline" />
+        <div class="product-info">
+          <div class="product-title">Web Lưu Giữ Kỷ Niệm Timeline Cuộn Dọc</div>
+          <div class="product-meta">
+            <i class="fas fa-history" style="color: #7bed9f"></i> Đã bán: 18
+          </div>
+          <div class="price-container">
+            <div>
+              <span class="old-price">120.000đ</span
+              ><span class="discount-badge">-33%</span>
+            </div>
+            <div class="new-price">80.000đ</div>
+          </div>
+          <div class="product-actions">
+            <button
+              class="btn-action btn-primary"
+              onclick="
+                buyViaMessenger(
+                  'Chào Thương, mình muốn mua Web Kỷ Niệm Timeline giá 80K.',
+                )
+              "
+            >
+              <i class="fab fa-facebook-messenger"></i> Mua ngay
+            </button>
+            <button
+              class="btn-action btn-outline"
+              onclick="window.open('#', '_blank')"
             >
               <i class="fas fa-eye"></i> Xem demo
             </button>
@@ -940,7 +705,7 @@
     <div id="pagination" class="pagination-container container"></div>
 
     <div class="section-header container" id="study-source">
-      <h2 class="section-title">Source Học Bài 📚</h2>
+      <h2 class="section-title">Source Học Bài</h2>
     </div>
     <section class="products container">
       <div class="product-card">
@@ -1041,7 +806,7 @@
     </section>
 
     <div class="section-header container" id="services">
-      <h2 class="section-title">Dịch Vụ Khác 🛠️</h2>
+      <h2 class="section-title">Dịch Vụ Khác</h2>
     </div>
     <section class="products container">
       <div class="product-card">
@@ -1111,14 +876,15 @@
       <div class="footer-container">
         <div class="footer-col">
           <h4 style="color: var(--primary-color)">
-            <i class="fas fa-heart"></i> Cậu SE Trẻ
+            <i class="fas fa-heart"></i> Tiến Thương
           </h4>
           <p>
             Nền tảng cung cấp web tỏ tình lãng mạn và dịch vụ thiết kế Frontend
             uy tín.
           </p>
           <p style="margin-top: 10px">
-            <i class="fas fa-home"></i> I love Việt Nam
+            <i class="fas fa-home"></i> Ngoài việc thả tym story của em, thì tôi
+            chẳng biết làm gì để em biết là TÔI THÍCH EM 💘
           </p>
         </div>
         <div class="footer-col">
@@ -1153,7 +919,7 @@
         ><i class="fas fa-heart"></i><span>Tỏ tình</span></a
       >
       <a href="#study-source" class="nav-item"
-        ><i class="fas fa-book-open"></i><span>Học bài</span></a
+        ><i class="fas fa-book-open"></i><span>Source</span></a
       >
       <a href="#services" class="nav-item"
         ><i class="fas fa-briefcase"></i><span>Dịch vụ</span></a
@@ -1164,8 +930,9 @@
       href="javascript:void(0)"
       onclick="buyViaMessenger('Chào Thương, mình cần tư vấn thêm nhé!')"
       class="messenger-floating-btn"
-      ><i class="fab fa-facebook-messenger"></i
-    ></a>
+    >
+      <i class="fab fa-facebook-messenger"></i>
+    </a>
 
     <div id="policyModal" class="modal-overlay">
       <div class="modal-content">
@@ -1175,195 +942,6 @@
       </div>
     </div>
 
-    <script>
-      // 1. MESSENGER
-      const FB_USERNAME = "tien.thuong.674774";
-      function buyViaMessenger(message) {
-        navigator.clipboard.writeText(message).finally(() => {
-          window.location.href = `https://m.me/${FB_USERNAME}`;
-        });
-      }
-
-      // 2. SLIDESHOW BANNER
-      const slides = document.querySelectorAll(".slide");
-      const dots = document.querySelectorAll(".dot");
-      let currentSlide = 0;
-      let slideInterval;
-
-      function showSlide(index) {
-        slides.forEach((s) => s.classList.remove("active"));
-        dots.forEach((d) => d.classList.remove("active"));
-        slides[index].classList.add("active");
-        dots[index].classList.add("active");
-        currentSlide = index;
-      }
-      function nextSlide() {
-        showSlide((currentSlide + 1) % slides.length);
-      }
-      function prevSlide() {
-        showSlide((currentSlide - 1 + slides.length) % slides.length);
-      }
-
-      document.querySelector(".next-btn").addEventListener("click", () => {
-        nextSlide();
-        resetInterval();
-      });
-      document.querySelector(".prev-btn").addEventListener("click", () => {
-        prevSlide();
-        resetInterval();
-      });
-      dots.forEach((dot, idx) => {
-        dot.addEventListener("click", () => {
-          showSlide(idx);
-          resetInterval();
-        });
-      });
-
-      function resetInterval() {
-        clearInterval(slideInterval);
-        slideInterval = setInterval(nextSlide, 2500);
-      }
-      slideInterval = setInterval(nextSlide, 2500);
-
-      // 3. TÍNH NĂNG LỌC VÀ PHÂN TRANG (CHỈ ÁP DỤNG LAPTOP VÀ CHỈ Ở MỤC WEB TỎ TÌNH)
-      const filterBtns = document.querySelectorAll(".filter-btn");
-      const productItems = document.querySelectorAll(
-        "#product-list .product-card.item",
-      );
-      const paginationContainer = document.getElementById("pagination");
-
-      const itemsPerPage = 6; // Giới hạn 6 thẻ (2 hàng x 3 cột)
-      let currentPage = 1;
-      let currentFilter = "all";
-
-      function renderProducts() {
-        const allItems = Array.from(productItems);
-        const isDesktop = window.innerWidth >= 768; // Kiểm tra màn hình laptop
-
-        // Lọc theo Category
-        const filteredItems = allItems.filter((item) => {
-          return (
-            currentFilter === "all" ||
-            item.getAttribute("data-category") === currentFilter
-          );
-        });
-
-        // Ẩn tất cả Web tỏ tình trước
-        allItems.forEach((item) => (item.style.display = "none"));
-
-        if (isDesktop && currentFilter === "all") {
-          // Nếu là PC và đang ở mục "Tất cả" -> Bật Phân trang
-          const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
-          const startIndex = (currentPage - 1) * itemsPerPage;
-          const endIndex = startIndex + itemsPerPage;
-
-          // Chỉ hiện đúng số lượng của trang hiện tại
-          filteredItems
-            .slice(startIndex, endIndex)
-            .forEach((item) => (item.style.display = "flex"));
-          renderPagination(totalPages);
-        } else {
-          // Nếu là Điện thoại, Hoặc không phải tab "Tất cả" -> Hiện hết không có phân trang
-          filteredItems.forEach((item) => (item.style.display = "flex"));
-          paginationContainer.classList.remove("show");
-        }
-      }
-
-      function renderPagination(totalPages) {
-        paginationContainer.innerHTML = "";
-        if (totalPages > 1) {
-          paginationContainer.classList.add("show");
-          for (let i = 1; i <= totalPages; i++) {
-            const btn = document.createElement("button");
-            btn.classList.add("page-btn");
-            if (i === currentPage) btn.classList.add("active");
-            btn.innerText = i;
-            btn.onclick = () => {
-              currentPage = i;
-              renderProducts();
-              document
-                .getElementById("love-web")
-                .scrollIntoView({ behavior: "smooth" });
-            };
-            paginationContainer.appendChild(btn);
-          }
-        } else {
-          paginationContainer.classList.remove("show");
-        }
-      }
-
-      // Xử lý khi nhấn nút Lọc (Filter)
-      filterBtns.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          filterBtns.forEach((b) => b.classList.remove("active"));
-          btn.classList.add("active");
-          currentFilter = btn.getAttribute("data-filter");
-          currentPage = 1; // Nhấn qua lại filter sẽ quay về trang 1
-          renderProducts();
-        });
-      });
-
-      // Lắng nghe sự kiện kéo dãn màn hình để tự cập nhật
-      window.addEventListener("resize", renderProducts);
-      renderProducts(); // Chạy lần đầu
-
-      // 4. MỞ BANNER CHÍNH SÁCH (MODAL)
-      const modal = document.getElementById("policyModal");
-      const modalTitle = document.getElementById("modalTitle");
-      const modalBody = document.getElementById("modalBody");
-      const closeModalBtn = document.querySelector(".close-modal");
-
-      const policyContent = {
-        privacy: {
-          title: "Chính Sách Bảo Mật 🔒",
-          text: "Chúng tôi cam kết bảo mật 100% thông tin cá nhân của bạn. Dữ liệu chỉ được sử dụng để hỗ trợ bạn trong quá trình tư vấn và cung cấp web tỏ tình, source code. Sẽ không có bất kỳ thông tin nào được chia sẻ cho bên thứ ba.",
-        },
-        refund: {
-          title: "Chính Sách Hoàn Tiền 💸",
-          text: "Cậu SE Trẻ cam kết hỗ trợ đổi hoặc hoàn tiền 100% nếu Source Code bị lỗi không thể chạy được, hoặc sản phẩm Web Tỏ Tình không đúng như mô tả Demo. Mọi yêu cầu được xử lý cực kỳ nhanh gọn thông qua việc nhắn tin trực tiếp.",
-        },
-      };
-
-      document.getElementById("link-privacy").addEventListener("click", () => {
-        modalTitle.innerText = policyContent.privacy.title;
-        modalBody.innerText = policyContent.privacy.text;
-        modal.classList.add("show");
-      });
-
-      document.getElementById("link-refund").addEventListener("click", () => {
-        modalTitle.innerText = policyContent.refund.title;
-        modalBody.innerText = policyContent.refund.text;
-        modal.classList.add("show");
-      });
-
-      // Đóng Banner Modal
-      closeModalBtn.addEventListener("click", () =>
-        modal.classList.remove("show"),
-      );
-      modal.addEventListener("click", (e) => {
-        if (e.target === modal) modal.classList.remove("show");
-      });
-
-      // 5. ĐIỀU HƯỚNG CUỘN MENU
-      document.querySelectorAll(".nav-item, .desktop-nav a").forEach((link) => {
-        link.addEventListener("click", function (e) {
-          if (this.getAttribute("href").startsWith("#")) {
-            e.preventDefault();
-            document
-              .querySelectorAll(".nav-item, .desktop-nav a")
-              .forEach((nav) => nav.classList.remove("active"));
-            this.classList.add("active");
-            const targetSection = document.getElementById(
-              this.getAttribute("href").substring(1),
-            );
-            if (targetSection)
-              window.scrollTo({
-                top: targetSection.offsetTop - 70,
-                behavior: "smooth",
-              });
-          }
-        });
-      });
-    </script>
+    <script src="JS/script.js"></script>
   </body>
 </html>
