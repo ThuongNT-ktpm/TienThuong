@@ -9,10 +9,9 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <style>
-     
       :root {
         --primary-color: #ff4757;
-        --blue-btn: #0084ff; 
+        --blue-btn: #0084ff;
         --bg-color: #f4f6f9;
         --text-dark: #2d3436;
         --text-light: #636e72;
@@ -30,14 +29,13 @@
       html {
         scroll-behavior: smooth;
       }
-
       body {
         background-color: var(--bg-color);
         color: var(--text-dark);
         padding-bottom: 90px;
       }
 
-   
+      /* --- Header --- */
       header {
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(10px);
@@ -64,6 +62,7 @@
         display: none;
       }
 
+      /* --- Banner Hero --- */
       .hero {
         position: relative;
         color: white;
@@ -106,41 +105,33 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.3),
-          rgba(0, 0, 0, 0.7)
-        );
         background: rgba(0, 0, 0, 0.6);
       }
 
-  
-.hero-content { 
-    position: relative; 
-    z-index: 2; 
-    padding: 0 20px;
-    max-width: 800px; 
-    margin: 0 auto; 
-}
-
-
-.hero h1 { 
-    font-size: 2.2rem;
-    font-weight: 800;
-    line-height: 1.3;
-    color: #ffffff;
-   
-    text-shadow: 4px 4px 15px rgba(0,0,0,1), 0 0 20px rgba(0,0,0,0.5);
-    margin-bottom: 15px;
-}
-
-
-.hero p {
-    font-size: 1.05rem;
-    color: #ffffff;
-    text-shadow: 2px 2px 10px rgba(0,0,0,1);
-    line-height: 1.6;
-}
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 0 20px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        line-height: 1.3;
+        color: #ffffff;
+        text-shadow:
+          4px 4px 15px rgba(0, 0, 0, 1),
+          0 0 20px rgba(0, 0, 0, 0.5);
+        margin-bottom: 15px;
+      }
+      .hero p {
+        font-size: 1.05rem;
+        color: #ffffff;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
+        line-height: 1.6;
+        margin-bottom: 25px;
+      }
 
       .btn-main {
         background: var(--primary-color);
@@ -211,7 +202,7 @@
         transform: scale(1.3);
       }
 
-      /* --- Tiêu đề Khu Vực --- */
+      /* --- Tiêu đề & Filter --- */
       .section-header {
         text-align: left;
         padding: 35px 20px 15px;
@@ -226,7 +217,6 @@
         letter-spacing: -0.5px;
       }
 
-      /* --- Thanh Lọc (Filter) --- */
       .category-filter {
         display: flex;
         gap: 12px;
@@ -258,9 +248,7 @@
         background-color: #e3f2fd;
       }
 
-      /* ========================================= */
-      /* THẺ SẢN PHẨM                              */
-      /* ========================================= */
+      /* --- Thẻ Sản Phẩm --- */
       .products {
         padding: 0 20px;
         display: grid;
@@ -269,7 +257,6 @@
         max-width: 1200px;
         margin: 0 auto;
       }
-
       .product-card {
         background: white;
         border-radius: var(--card-radius);
@@ -280,15 +267,12 @@
         transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
       .product-img {
-        height: 170px;
-        background: #111;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 4rem;
-        transition: 0.4s;
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+        background: #eee;
       }
-
       .product-info {
         padding: 16px;
         display: flex;
@@ -310,7 +294,6 @@
       .product-card:hover .product-title {
         color: var(--blue-btn);
       }
-
       .product-meta {
         font-size: 0.85rem;
         color: var(--text-light);
@@ -349,7 +332,7 @@
         font-weight: bold;
       }
 
-      /* 2 Nút Mua/Xem */
+      /* --- Nút Mua/Xem --- */
       .product-actions {
         display: flex;
         gap: 10px;
@@ -381,7 +364,6 @@
       .btn-primary:active {
         transform: scale(0.96);
       }
-
       .btn-outline {
         background: #f1f2f6;
         color: #2d3436;
@@ -394,8 +376,6 @@
       .btn-outline:active {
         background: #dfe4ea;
       }
-
-      /* Nút cho Dịch vụ & Source (Nút Full Width) */
       .btn-buy-full {
         width: 100%;
         padding: 14px 0;
@@ -414,8 +394,37 @@
         transform: translateY(-2px);
         box-shadow: 0 6px 15px rgba(0, 132, 255, 0.2);
       }
-      .btn-buy-full:active {
-        transform: scale(0.96);
+
+      /* ======================================================= */
+      /* PHÂN TRANG (PAGINATION) CHỈ HIỆN TRÊN PC                */
+      /* ======================================================= */
+      .pagination-container {
+        display: none;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 30px;
+        width: 100%;
+      }
+      .page-btn {
+        background: white;
+        border: 1px solid #dfe6e9;
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-weight: bold;
+        font-size: 1rem;
+        color: var(--text-dark);
+      }
+      .page-btn.active {
+        background: var(--blue-btn);
+        color: white;
+        border-color: var(--blue-btn);
+      }
+      .page-btn:hover:not(.active) {
+        background: #f0f7ff;
+        color: var(--blue-btn);
+        border-color: var(--blue-btn);
       }
 
       /* --- Footer --- */
@@ -442,6 +451,7 @@
         color: #74b9ff;
         text-decoration: none;
         transition: 0.3s;
+        cursor: pointer;
       }
       .footer-col ul li a:hover {
         color: white;
@@ -454,7 +464,7 @@
         font-size: 0.8rem;
       }
 
-      /* --- Bottom Nav (Mobile) --- */
+      /* --- Bottom Nav --- */
       .bottom-nav {
         position: fixed;
         bottom: 0;
@@ -492,7 +502,6 @@
         transform: translateY(-3px);
       }
 
-      /* --- Nút Messenger Góc Phải --- */
       .messenger-floating-btn {
         position: fixed;
         right: 20px;
@@ -527,27 +536,81 @@
       }
 
       /* ======================================================= */
-      /* PC/LAPTOP (BẢN NÂNG CẤP GIAO DIỆN SIÊU MƯỢT)            */
+      /* MODAL BANNER CHÍNH SÁCH                                 */
+      /* ======================================================= */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 10000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
+      }
+      .modal-overlay.show {
+        opacity: 1;
+        visibility: visible;
+      }
+      .modal-content {
+        background: white;
+        width: 90%;
+        max-width: 500px;
+        padding: 30px;
+        border-radius: 15px;
+        position: relative;
+        transform: translateY(-20px);
+        transition: 0.3s;
+        color: var(--text-dark);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+      .modal-overlay.show .modal-content {
+        transform: translateY(0);
+      }
+      .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: #a4b0be;
+        transition: 0.3s;
+      }
+      .close-modal:hover {
+        color: var(--primary-color);
+      }
+      .modal-title {
+        font-size: 1.4rem;
+        font-weight: 800;
+        margin-bottom: 15px;
+        color: var(--blue-btn);
+        border-bottom: 2px solid #f1f2f6;
+        padding-bottom: 10px;
+      }
+      .modal-body {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #57606f;
+      }
+
+      /* ======================================================= */
+      /* PC/LAPTOP                                               */
       /* ======================================================= */
       @media (min-width: 768px) {
         body {
           padding-bottom: 0;
         }
-
-        /* Căn giữa các khu vực nội dung */
         .container {
           max-width: 1200px;
           margin: 0 auto;
           padding-left: 0;
           padding-right: 0;
         }
-        .section-header.container,
-        .category-filter.container {
-          padding-left: 0;
-          padding-right: 0;
-        }
-
-        /* Header sang trọng hơn */
         header {
           justify-content: space-between;
           padding: 20px 5%;
@@ -560,7 +623,7 @@
           gap: 40px;
         }
 
-        /* Hiệu ứng gạch chân khi hover menu Desktop */
+        /* Đã sửa lỗi Header cho bạn ở đây: */
         .desktop-nav a {
           text-decoration: none;
           color: var(--text-dark);
@@ -569,6 +632,10 @@
           position: relative;
           padding-bottom: 5px;
           transition: 0.3s;
+        }
+        .desktop-nav a:hover,
+        .desktop-nav a.active {
+          color: var(--blue-btn);
         }
         .desktop-nav a::after {
           content: "";
@@ -581,21 +648,16 @@
           transition: width 0.3s ease;
           border-radius: 2px;
         }
-        .desktop-nav a:hover {
-          color: var(--blue-btn);
-        }
         .desktop-nav a:hover::after,
         .desktop-nav a.active::after {
           width: 100%;
-          color: var(--blue-btn);
         }
+        /* --------------------------------- */
 
-        /* Tắt menu điện thoại */
         .bottom-nav {
           display: none;
         }
 
-        /* Banner to, hoành tráng */
         .hero {
           padding: 160px 20px;
           min-height: 550px;
@@ -604,24 +666,16 @@
         }
         .hero h1 {
           font-size: 3.5rem;
-          margin-bottom: 20px;
           letter-spacing: -1px;
         }
         .hero p {
           font-size: 1.2rem;
           max-width: 700px;
-          margin-bottom: 35px;
         }
         .btn-main {
           font-size: 1.1rem;
           padding: 16px 40px;
         }
-        .btn-main:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 25px rgba(255, 71, 87, 0.5);
-        }
-
-        /* Nút slider to hơn */
         .slider-btn {
           width: 55px;
           height: 55px;
@@ -637,7 +691,6 @@
           bottom: 30px;
         }
 
-        /* Lưới sản phẩm 3 Cột tuyệt đẹp */
         .products {
           grid-template-columns: repeat(3, 1fr);
           gap: 30px;
@@ -649,8 +702,6 @@
         .section-title {
           font-size: 2.2rem;
         }
-
-        /* Hover nổi thẻ sản phẩm trên PC */
         .product-card {
           border-radius: 20px;
         }
@@ -660,13 +711,10 @@
         }
         .product-img {
           height: 220px;
-          font-size: 5rem;
         }
         .product-card:hover .product-img {
           transform: scale(1.02);
-        } /* Phóng to nhẹ ảnh khi hover */
-
-        /* Filter ra giữa */
+        }
         .category-filter {
           justify-content: center;
           gap: 20px;
@@ -676,12 +724,11 @@
           padding: 10px 24px;
           font-size: 1.05rem;
         }
-        .filter-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 5px 15px rgba(0, 132, 255, 0.15);
-        }
 
-        /* Vị trí nút Messenger */
+        .pagination-container.show {
+          display: flex;
+        } /* Chỉ hiện Phân trang trên PC khi có class show */
+
         .messenger-floating-btn {
           bottom: 40px;
           right: 40px;
@@ -689,8 +736,6 @@
           height: 65px;
           font-size: 2.5rem;
         }
-
-        /* Footer 4 cột */
         .site-footer {
           margin-top: 80px;
           padding: 60px 20px 30px;
@@ -715,15 +760,16 @@
     </header>
 
     <section class="hero">
-     <div class="slider-container">
-        <img class="slide active" src="image/tinhyeu1.jpg"alt="Banner 1">
-        
-        <img class="slide" src="image/tinhyeu2.jpg" alt="Banner 2">
-        
-        <img class="slide" src="image/tinhyeu3.webp" alt="Banner 3">
-    </div>
-
-    </div>
+      <div class="slider-container">
+        <img
+          class="slide active"
+          src="image/banner/tinhyeu1.jpg"
+          alt="Banner 1"
+        />
+        <img class="slide" src="image/banner/tinhyeu2.jpg" alt="Banner 2" />
+        <img class="slide" src="image/banner/tinhyeu3.webp" alt="Banner 3" />
+        <img class="slide" src="image/banner/tinhyeu4.jpg" alt="Banner 4" />
+      </div>
       <button class="slider-btn prev-btn">
         <i class="fas fa-chevron-left"></i>
       </button>
@@ -732,13 +778,13 @@
       </button>
       <div class="slider-dots">
         <span class="dot active"></span><span class="dot"></span
-        ><span class="dot"></span>
+        ><span class="dot"></span><span class="dot"></span>
       </div>
       <div class="hero-content">
         <h1>Gửi Trao Cảm Xúc<br />& Tri Thức</h1>
         <p>
           Gõ phím tạo yêu thương, viết code xây nền tảng. Chào bạn, mình là
-          <strong>Cậu SE Trẻ</strong> chuyên cung cấp web kỷ niệm lãng mạn
+          <strong>Cậu SE Trẻ</strong> chuyên cung cấp web kỷ niệm lãng mạn.
         </p>
         <button
           onclick="
@@ -766,25 +812,29 @@
 
     <section class="products container" id="product-list">
       <div class="product-card item" data-category="valentine">
-        <div class="product-img" style="background: #2d3436">💖</div>
+        <img
+          class="product-img"
+          src="image/web/quabimat.png"
+          alt="Tên sản phẩm"
+        />
         <div class="product-info">
-          <div class="product-title">Love Gift - Mưa Tình Yêu</div>
+          <div class="product-title">Love Gift - Quà bí mật</div>
           <div class="product-meta">
-            <i class="fas fa-fire" style="color: #ff4757"></i> Đã bán: 319
+            <i class="fas fa-fire" style="color: #ff4757"></i> Đã bán: 30
           </div>
           <div class="price-container">
             <div>
-              <span class="old-price">55.998đ</span
-              ><span class="discount-badge">-40%</span>
+              <span class="old-price">50.000đ</span
+              ><span class="discount-badge">-50%</span>
             </div>
-            <div class="new-price">39.999đ</div>
+            <div class="new-price">25.000đ</div>
           </div>
           <div class="product-actions">
             <button
               class="btn-action btn-primary"
               onclick="
                 buyViaMessenger(
-                  'Chào Thương, mình muốn mua [ Web Tỏ Tình Valentine ] với giá 39.999đ.',
+                  'Chào Thương, mình muốn mua Web Tỏ Tình Valentine với giá 25.000đ.',
                 )
               "
             >
@@ -792,7 +842,12 @@
             </button>
             <button
               class="btn-action btn-outline"
-              onclick="window.open('#', '_blank')"
+              onclick="
+                window.open(
+                  'https://thuongnt-ktpm.github.io/Demo_hop_qua',
+                  '_blank',
+                )
+              "
             >
               <i class="fas fa-eye"></i> Xem demo
             </button>
@@ -801,25 +856,29 @@
       </div>
 
       <div class="product-card item" data-category="birthday">
-        <div class="product-img" style="background: #2d3436">🎂</div>
+        <img
+          class="product-img"
+          src="image/web/birthday.png"
+          alt="Tên sản phẩm"
+        />
         <div class="product-info">
-          <div class="product-title">Web Chúc Mừng Sinh Nhật Pháo Hoa 3D</div>
+          <div class="product-title">Web Chúc Mừng Sinh Nhật Mưa 3D</div>
           <div class="product-meta">
-            <i class="fas fa-star" style="color: #f1c40f"></i> Đã bán: 88
+            <i class="fas fa-star" style="color: #f1c40f"></i> Đã bán: 23
           </div>
           <div class="price-container">
             <div>
-              <span class="old-price">99.000đ</span
-              ><span class="discount-badge">-40%</span>
+              <span class="old-price">50.000đ</span
+              ><span class="discount-badge">-42%</span>
             </div>
-            <div class="new-price">59.000đ</div>
+            <div class="new-price">29.000đ</div>
           </div>
           <div class="product-actions">
             <button
               class="btn-action btn-primary"
               onclick="
                 buyViaMessenger(
-                  'Chào Thương, mình muốn mua [ Web Sinh Nhật ] với giá 59.000đ.',
+                  'Chào Thương, mình muốn mua Web Sinh Nhật với giá 29.000đ.',
                 )
               "
             >
@@ -827,7 +886,9 @@
             </button>
             <button
               class="btn-action btn-outline"
-              onclick="window.open('#', '_blank')"
+              onclick="
+                window.open('https://thuongnt-ktpm.github.io/smThu', '_blank')
+              "
             >
               <i class="fas fa-eye"></i> Xem demo
             </button>
@@ -836,28 +897,28 @@
       </div>
 
       <div class="product-card item" data-category="8-3">
-        <div class="product-img" style="background: #2d3436">🌷</div>
+        <img class="product-img" src="image/web/phunu.png" alt="Tên sản phẩm" />
         <div class="product-info">
           <div class="product-title">
             Trang Tôn Vinh Phụ Nữ 8/3 - Lời Chúc Ý Nghĩa
           </div>
           <div class="product-meta">
             <i class="fas fa-shopping-cart" style="color: #747d8c"></i> Đã bán:
-            142
+            4
           </div>
           <div class="price-container">
             <div>
-              <span class="old-price">69.998đ</span
-              ><span class="discount-badge">-30%</span>
+              <span class="old-price">69.999đ</span
+              ><span class="discount-badge">-63.8%</span>
             </div>
-            <div class="new-price">49.999đ</div>
+            <div class="new-price">25.000đ</div>
           </div>
           <div class="product-actions">
             <button
               class="btn-action btn-primary"
               onclick="
                 buyViaMessenger(
-                  'Chào Thương, mình muốn mua [ Trang Tôn Vinh Phụ Nữ 8/3 ] với giá 49.999đ.',
+                  'Chào Thương, mình muốn mua Trang Phụ Nữ 8/3 với giá 25.000đ.',
                 )
               "
             >
@@ -865,7 +926,9 @@
             </button>
             <button
               class="btn-action btn-outline"
-              onclick="window.open('#', '_blank')"
+              onclick="
+                window.open('https://thuongnt-ktpm.github.io/2010', '_blank')
+              "
             >
               <i class="fas fa-eye"></i> Xem demo
             </button>
@@ -874,17 +937,18 @@
       </div>
     </section>
 
+    <div id="pagination" class="pagination-container container"></div>
+
     <div class="section-header container" id="study-source">
-      <h2 class="section-title">Source Học Bài</h2>
+      <h2 class="section-title">Source Học Bài 📚</h2>
     </div>
     <section class="products container">
       <div class="product-card">
-        <div
+        <img
           class="product-img"
-          style="background: linear-gradient(135deg, #a18cd1, #fbc2eb)"
-        >
-          📹
-        </div>
+          src="image/source/book.png"
+          alt="Tên sản phẩm"
+        />
         <div class="product-info">
           <div class="product-title">Source môn IOT102</div>
           <div class="price-container">
@@ -899,32 +963,11 @@
         </div>
       </div>
       <div class="product-card">
-        <div
+        <img
           class="product-img"
-          style="background: linear-gradient(135deg, #84fab0, #8fd3f4)"
-        >
-          ☕
-        </div>
-        <div class="product-info">
-          <div class="product-title">Source môn SSG104</div>
-          <div class="price-container">
-            <div class="new-price">90.000đ</div>
-          </div>
-          <button
-            class="btn-buy-full"
-            onclick="buyViaMessenger('Mình muốn mua Source môn SSG104')"
-          >
-            <i class="fab fa-facebook-messenger"></i> Mua Ngay
-          </button>
-        </div>
-      </div>
-      <div class="product-card">
-        <div
-          class="product-img"
-          style="background: linear-gradient(135deg, #a18cd1, #fbc2eb)"
-        >
-          📹
-        </div>
+          src="image/source/book.png"
+          alt="Tên sản phẩm"
+        />
         <div class="product-info">
           <div class="product-title">Source môn JPD113</div>
           <div class="price-container">
@@ -939,12 +982,11 @@
         </div>
       </div>
       <div class="product-card">
-        <div
+        <img
           class="product-img"
-          style="background: linear-gradient(135deg, #a18cd1, #fbc2eb)"
-        >
-          📹
-        </div>
+          src="image/source/book.png"
+          alt="Tên sản phẩm"
+        />
         <div class="product-info">
           <div class="product-title">Source môn PRJ301</div>
           <div class="price-container">
@@ -959,12 +1001,30 @@
         </div>
       </div>
       <div class="product-card">
-        <div
+        <img
           class="product-img"
-          style="background: linear-gradient(135deg, #a18cd1, #fbc2eb)"
-        >
-          📹
+          src="image/source/book.png"
+          alt="Tên sản phẩm"
+        />
+        <div class="product-info">
+          <div class="product-title">Source môn SSG104</div>
+          <div class="price-container">
+            <div class="new-price">90.000đ</div>
+          </div>
+          <button
+            class="btn-buy-full"
+            onclick="buyViaMessenger('Mình muốn mua Source môn SSG104')"
+          >
+            <i class="fab fa-facebook-messenger"></i> Mua Ngay
+          </button>
         </div>
+      </div>
+      <div class="product-card">
+        <img
+          class="product-img"
+          src="image/source/book.png"
+          alt="Tên sản phẩm"
+        />
         <div class="product-info">
           <div class="product-title">Source môn SWE202c</div>
           <div class="price-container">
@@ -985,12 +1045,11 @@
     </div>
     <section class="products container">
       <div class="product-card">
-        <div
+        <img
           class="product-img"
-          style="background: linear-gradient(135deg, #cfd9df, #e2ebf0)"
-        >
-          ☁️
-        </div>
+          src="image/divukhac/courese.png"
+          alt="Tên sản phẩm"
+        />
         <div class="product-info">
           <div class="product-title">Học hộ coursera</div>
           <div class="price-container">
@@ -1005,12 +1064,11 @@
         </div>
       </div>
       <div class="product-card">
-        <div
+        <img
           class="product-img"
-          style="background: linear-gradient(135deg, #cfd9df, #e2ebf0)"
-        >
-          ☁️
-        </div>
+          src="image/divukhac/buff.png"
+          alt="Tên sản phẩm"
+        />
         <div class="product-info">
           <div class="product-title">Buff like và flo tiktok, facebook,..</div>
           <div class="price-container">
@@ -1019,7 +1077,7 @@
           <button
             class="btn-buy-full"
             onclick="
-              buyViaMessenger('Mình cần hỗ trợ Setup Hosting & Tên miền.')
+              buyViaMessenger('Mình cần hỗ trợ Buff like và flo tiktok.')
             "
           >
             <i class="fas fa-server"></i> Liên Hệ
@@ -1027,12 +1085,11 @@
         </div>
       </div>
       <div class="product-card">
-        <div
+        <img
           class="product-img"
-          style="background: linear-gradient(135deg, #cfd9df, #e2ebf0)"
-        >
-          ☁️
-        </div>
+          src="image/divukhac/locket.png"
+          alt="Tên sản phẩm"
+        />
         <div class="product-info">
           <div class="product-title">Up locket gold vĩnh viễn</div>
           <div class="price-container">
@@ -1041,7 +1098,7 @@
           <button
             class="btn-buy-full"
             onclick="
-              buyViaMessenger('Mình cần hỗ trợ Setup Hosting & Tên miền.')
+              buyViaMessenger('Mình cần hỗ trợ Up locket gold vĩnh viễn.')
             "
           >
             <i class="fas fa-server"></i> Liên Hệ
@@ -1075,8 +1132,8 @@
         <div class="footer-col">
           <h4>Hỗ trợ</h4>
           <ul>
-            <li><a href="#">Bảo mật thông tin</a></li>
-            <li><a href="#">Chính sách hoàn tiền</a></li>
+            <li><a id="link-privacy">Bảo mật thông tin</a></li>
+            <li><a id="link-refund">Chính sách hoàn tiền</a></li>
           </ul>
         </div>
       </div>
@@ -1110,18 +1167,24 @@
       ><i class="fab fa-facebook-messenger"></i
     ></a>
 
-    <script>
-      // --- 1. ID FACEBOOK CỦA BẠN ---
-      const FB_USERNAME = "tien.thuong.674774";
+    <div id="policyModal" class="modal-overlay">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3 id="modalTitle" class="modal-title">Tiêu đề</h3>
+        <div id="modalBody" class="modal-body">Nội dung...</div>
+      </div>
+    </div>
 
-      // --- 2. HÀM CHUYỂN THẲNG SANG MESSENGER ---
+    <script>
+      // 1. MESSENGER
+      const FB_USERNAME = "tien.thuong.674774";
       function buyViaMessenger(message) {
         navigator.clipboard.writeText(message).finally(() => {
           window.location.href = `https://m.me/${FB_USERNAME}`;
         });
       }
 
-      // --- 3. SLIDESHOW ---
+      // 2. SLIDESHOW BANNER
       const slides = document.querySelectorAll(".slide");
       const dots = document.querySelectorAll(".dot");
       let currentSlide = 0;
@@ -1134,7 +1197,6 @@
         dots[index].classList.add("active");
         currentSlide = index;
       }
-
       function nextSlide() {
         showSlide((currentSlide + 1) % slides.length);
       }
@@ -1150,7 +1212,6 @@
         prevSlide();
         resetInterval();
       });
-
       dots.forEach((dot, idx) => {
         dot.addEventListener("click", () => {
           showSlide(idx);
@@ -1164,26 +1225,126 @@
       }
       slideInterval = setInterval(nextSlide, 2500);
 
-      // --- 4. FILTER TABS (LỌC SẢN PHẨM) ---
+      // 3. TÍNH NĂNG LỌC VÀ PHÂN TRANG (CHỈ ÁP DỤNG LAPTOP VÀ CHỈ Ở MỤC WEB TỎ TÌNH)
       const filterBtns = document.querySelectorAll(".filter-btn");
-      const productItems = document.querySelectorAll(".product-card.item");
+      const productItems = document.querySelectorAll(
+        "#product-list .product-card.item",
+      );
+      const paginationContainer = document.getElementById("pagination");
 
+      const itemsPerPage = 6; // Giới hạn 6 thẻ (2 hàng x 3 cột)
+      let currentPage = 1;
+      let currentFilter = "all";
+
+      function renderProducts() {
+        const allItems = Array.from(productItems);
+        const isDesktop = window.innerWidth >= 768; // Kiểm tra màn hình laptop
+
+        // Lọc theo Category
+        const filteredItems = allItems.filter((item) => {
+          return (
+            currentFilter === "all" ||
+            item.getAttribute("data-category") === currentFilter
+          );
+        });
+
+        // Ẩn tất cả Web tỏ tình trước
+        allItems.forEach((item) => (item.style.display = "none"));
+
+        if (isDesktop && currentFilter === "all") {
+          // Nếu là PC và đang ở mục "Tất cả" -> Bật Phân trang
+          const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+          const startIndex = (currentPage - 1) * itemsPerPage;
+          const endIndex = startIndex + itemsPerPage;
+
+          // Chỉ hiện đúng số lượng của trang hiện tại
+          filteredItems
+            .slice(startIndex, endIndex)
+            .forEach((item) => (item.style.display = "flex"));
+          renderPagination(totalPages);
+        } else {
+          // Nếu là Điện thoại, Hoặc không phải tab "Tất cả" -> Hiện hết không có phân trang
+          filteredItems.forEach((item) => (item.style.display = "flex"));
+          paginationContainer.classList.remove("show");
+        }
+      }
+
+      function renderPagination(totalPages) {
+        paginationContainer.innerHTML = "";
+        if (totalPages > 1) {
+          paginationContainer.classList.add("show");
+          for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement("button");
+            btn.classList.add("page-btn");
+            if (i === currentPage) btn.classList.add("active");
+            btn.innerText = i;
+            btn.onclick = () => {
+              currentPage = i;
+              renderProducts();
+              document
+                .getElementById("love-web")
+                .scrollIntoView({ behavior: "smooth" });
+            };
+            paginationContainer.appendChild(btn);
+          }
+        } else {
+          paginationContainer.classList.remove("show");
+        }
+      }
+
+      // Xử lý khi nhấn nút Lọc (Filter)
       filterBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
           filterBtns.forEach((b) => b.classList.remove("active"));
           btn.classList.add("active");
-          const filterValue = btn.getAttribute("data-filter");
-          productItems.forEach((item) => {
-            item.style.display =
-              filterValue === "all" ||
-              item.getAttribute("data-category") === filterValue
-                ? "flex"
-                : "none";
-          });
+          currentFilter = btn.getAttribute("data-filter");
+          currentPage = 1; // Nhấn qua lại filter sẽ quay về trang 1
+          renderProducts();
         });
       });
 
-      // --- 5. ĐIỀU HƯỚNG CUỘN TRANG (MƯỢT CẢ PC LẪN MOBILE) ---
+      // Lắng nghe sự kiện kéo dãn màn hình để tự cập nhật
+      window.addEventListener("resize", renderProducts);
+      renderProducts(); // Chạy lần đầu
+
+      // 4. MỞ BANNER CHÍNH SÁCH (MODAL)
+      const modal = document.getElementById("policyModal");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalBody = document.getElementById("modalBody");
+      const closeModalBtn = document.querySelector(".close-modal");
+
+      const policyContent = {
+        privacy: {
+          title: "Chính Sách Bảo Mật 🔒",
+          text: "Chúng tôi cam kết bảo mật 100% thông tin cá nhân của bạn. Dữ liệu chỉ được sử dụng để hỗ trợ bạn trong quá trình tư vấn và cung cấp web tỏ tình, source code. Sẽ không có bất kỳ thông tin nào được chia sẻ cho bên thứ ba.",
+        },
+        refund: {
+          title: "Chính Sách Hoàn Tiền 💸",
+          text: "Cậu SE Trẻ cam kết hỗ trợ đổi hoặc hoàn tiền 100% nếu Source Code bị lỗi không thể chạy được, hoặc sản phẩm Web Tỏ Tình không đúng như mô tả Demo. Mọi yêu cầu được xử lý cực kỳ nhanh gọn thông qua việc nhắn tin trực tiếp.",
+        },
+      };
+
+      document.getElementById("link-privacy").addEventListener("click", () => {
+        modalTitle.innerText = policyContent.privacy.title;
+        modalBody.innerText = policyContent.privacy.text;
+        modal.classList.add("show");
+      });
+
+      document.getElementById("link-refund").addEventListener("click", () => {
+        modalTitle.innerText = policyContent.refund.title;
+        modalBody.innerText = policyContent.refund.text;
+        modal.classList.add("show");
+      });
+
+      // Đóng Banner Modal
+      closeModalBtn.addEventListener("click", () =>
+        modal.classList.remove("show"),
+      );
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) modal.classList.remove("show");
+      });
+
+      // 5. ĐIỀU HƯỚNG CUỘN MENU
       document.querySelectorAll(".nav-item, .desktop-nav a").forEach((link) => {
         link.addEventListener("click", function (e) {
           if (this.getAttribute("href").startsWith("#")) {
@@ -1192,14 +1353,14 @@
               .querySelectorAll(".nav-item, .desktop-nav a")
               .forEach((nav) => nav.classList.remove("active"));
             this.classList.add("active");
-            const targetId = this.getAttribute("href").substring(1);
-            const targetSection = document.getElementById(targetId);
-            if (targetSection) {
+            const targetSection = document.getElementById(
+              this.getAttribute("href").substring(1),
+            );
+            if (targetSection)
               window.scrollTo({
                 top: targetSection.offsetTop - 70,
                 behavior: "smooth",
               });
-            }
           }
         });
       });
