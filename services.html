@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dịch Vụ Khác - Thương</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="CSS/style.css" />
+  </head>
+  <body style="padding-top: 20px">
+    <header id="home">
+      <a href="index.html" class="logo">Cậu SE <span>Trẻ</span></a>
+      <nav class="desktop-nav">
+        <a href="index.html">Trang chủ</a>
+        <a href="index.html#love-web">Web tỏ tình</a>
+        <a href="source.html">Source học bài</a>
+        <a href="#services" class="active">Dịch vụ khác</a>
+      </nav>
+    </header>
+
+    <div class="section-header container" id="services">
+      <h2 class="section-title">Dịch Vụ Khác</h2>
+    </div>
+
+    <section class="products container">
+      <div class="product-card">
+        <img
+          class="product-img"
+          src="image/divukhac/courese.png"
+          alt="Tên sản phẩm"
+        />
+        <div class="product-info">
+          <div class="product-title">Học hộ coursera</div>
+          <div class="price-container">
+            <div class="new-price">Trao đổi riêng</div>
+          </div>
+          <button
+            class="btn-buy-full"
+            onclick="buyViaMessenger('Mình cần hỗ trợ Học hộ coursera.')"
+          >
+            <i class="fas fa-server"></i> Liên Hệ
+          </button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img
+          class="product-img"
+          src="image/divukhac/buff.png"
+          alt="Tên sản phẩm"
+        />
+        <div class="product-info">
+          <div class="product-title">Buff like và flo tiktok, facebook,..</div>
+          <div class="price-container">
+            <div class="new-price">Trao đổi riêng</div>
+          </div>
+          <button
+            class="btn-buy-full"
+            onclick="
+              buyViaMessenger('Mình cần hỗ trợ Buff like và flo tiktok.')
+            "
+          >
+            <i class="fas fa-server"></i> Liên Hệ
+          </button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img
+          class="product-img"
+          src="image/divukhac/locket.png"
+          alt="Tên sản phẩm"
+        />
+        <div class="product-info">
+          <div class="product-title">Up locket gold vĩnh viễn</div>
+          <div class="price-container">
+            <div class="new-price">Nhận khách hàng trực tiếp</div>
+          </div>
+          <button
+            class="btn-buy-full"
+            onclick="
+              buyViaMessenger('Mình cần hỗ trợ Up locket gold vĩnh viễn.')
+            "
+          >
+            <i class="fas fa-server"></i> Liên Hệ
+          </button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img
+          class="product-img"
+          src="image/divukhac/office.png"
+          alt="Tên sản phẩm"
+        />
+        <div class="product-info">
+          <div class="product-title">Office 2016 bản quyền</div>
+          <div class="price-container">
+            <div class="new-price">Trao đổi riêng</div>
+          </div>
+          <button
+            class="btn-buy-full"
+            onclick="buyViaMessenger('Mình cần hỗ trợ Office bản quyền.')"
+          >
+            <i class="fas fa-server"></i> Liên Hệ
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h4 style="color: var(--primary-color)">
+            <i class="fas fa-heart"></i> Tiến Thương
+          </h4>
+          <p>
+            Nền tảng cung cấp web tỏ tình lãng mạn và dịch vụ thiết kế Frontend
+            uy tín.
+          </p>
+          <p>
+            Cuộc đời dạy tôi phải biết trân trọng tình yêu nhưng nó cũng bảo tôi
+            đừng quỳ gối cầu xin thứ tình yêu đó 😌
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Danh mục</h4>
+          <ul>
+            <li><a href="index.html#love-web">Web tỏ tình</a></li>
+            <li><a href="source.html">Source học bài</a></li>
+            <li><a href="#services">Dịch vụ khác</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Hỗ trợ</h4>
+          <ul>
+            <li>
+              <a id="link-privacy" style="cursor: pointer">Bảo mật thông tin</a>
+            </li>
+            <li>
+              <a id="link-refund" style="cursor: pointer"
+                >Chính sách hoàn tiền</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 - Hãy cứ trở thành người mà bạn muốn.</p>
+      </div>
+    </footer>
+
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-item"
+        ><i class="fas fa-home"></i><span>Trang chủ</span></a
+      >
+      <a href="index.html#love-web" class="nav-item"
+        ><i class="fas fa-heart"></i><span>Tỏ tình</span></a
+      >
+      <a href="source.html" class="nav-item"
+        ><i class="fas fa-book-open"></i><span>Source</span></a
+      >
+      <a href="#services" class="nav-item active"
+        ><i class="fas fa-briefcase"></i><span>Dịch vụ</span></a
+      >
+    </nav>
+
+    <a
+      href="javascript:void(0)"
+      onclick="
+        buyViaMessenger('Chào Thương, mình cần tư vấn về các dịch vụ khác!')
+      "
+      class="messenger-floating-btn"
+    >
+      <i class="fab fa-facebook-messenger"></i>
+    </a>
+    <div id="policyModal" class="modal-overlay">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3 id="modalTitle" class="modal-title">Tiêu đề</h3>
+        <div id="modalBody" class="modal-body">Nội dung...</div>
+      </div>
+    </div>
+    <script src="JS/script.js"></script>
+  </body>
+</html>
